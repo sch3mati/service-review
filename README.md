@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project Name
 
 > TKOut
@@ -36,3 +37,7 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
+=======
+# reviews-service
+Full stack module for rendering reviews of a given restaurant
+>>>>>>> 8493b3e9305bc7b596b430be4c3130eb0ce0f14b
