@@ -1,2 +1,2 @@
 # reviews-service
-Fullstack module for rendering reviews of a given restaurant
+Full stack module for rendering reviews of a given restaurant
