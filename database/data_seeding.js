@@ -3,7 +3,7 @@ const faker = require('faker');
 const db = require('./index.js');
 
 // query for inserting data to MySQL database restaurants table
-let q1 = 'INSERT INTO restaurants (name_of_restaurant,number_of_reviews, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, percent_five_star, percent_four_star, percent_three_star, percent_two_star, percent_one_star, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+const q1 = 'INSERT INTO restaurants (name_of_restaurant,number_of_reviews, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, percent_five_star, percent_four_star, percent_three_star, percent_two_star, percent_one_star, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 for (let i = 0; i < 100; i += 1) {
   // random data generation functions
@@ -34,7 +34,7 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 // query for inserting data to MySQL database users table
-let q2 = 'INSERT INTO users (avatar, first_name, last_name, number_of_reviews) VALUES (?, ?, ?, ?)';
+const q2 = 'INSERT INTO users (avatar, first_name, last_name, number_of_reviews) VALUES (?, ?, ?, ?)';
 
 for (let i = 0; i < 100; i += 1) {
   // random data generation functions
@@ -51,13 +51,12 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 // query for inserting data to MySQL database reviews table
-let q3 = 'INSERT INTO reviews (id_restaurants, id_users, create_date, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+const q3 = 'INSERT INTO responses (id_restaurants, id_users, create_date, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 for (let i = 0; i < 2000; i += 1) {
   // random data generation functions
   const restId = Math.ceil(Math.random() * 100);
   const userId = Math.ceil(Math.random() * 100);
-  const restName = faker.company.companyName();
   const randomDate = faker.date.recent();
   const randomMessage = faker.lorem.paragraph();
   const overall = (Math.random() * 5).toFixed(2);

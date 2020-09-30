@@ -11,7 +11,8 @@
     "react-dev": "webpack -d --watch",
     "start-dev": "nodemon server/index.js -w server -w database",
     "seed": "node database/data_seeding.js",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --verbose --coverage"
   },
   "dependencies": {
     "axios": "^0.20.0",

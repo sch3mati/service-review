@@ -17,8 +17,8 @@ const getRestaurantRating = (id, callback) => {
   });
 };
 
-const getAllReviews = (callback) => {
-  const q = 'SELECT * FROM reviews';
+const getResponses = (id, callback) => {
+  const q = `SELECT * FROM responses where id_restaurants = ${id};`;
   connection.query(q, (err, data) => {
     if (err) {
       // console.log('error in MySQL select * from transactions query');
@@ -30,22 +30,22 @@ const getAllReviews = (callback) => {
   });
 };
 
-// const getAllUsers = (callback) => {
-//   const q = 'SELECT * FROM users';
-//   connection.query(q, (err, data) => {
-//     if (err) {
-//       // console.log('error in MySQL select * from transactions query');
-//       callback(err);
-//     } else {
-//       // console.log('successful MySQL select * from transactions query');
-//       callback(null, data);
-//     }
-//   });
-// };
+const getAllUsers = (callback) => {
+  const q = 'SELECT * FROM users';
+  connection.query(q, (err, data) => {
+    if (err) {
+      // console.log('error in MySQL select * from transactions query');
+      callback(err);
+    } else {
+      // console.log('successful MySQL select * from transactions query');
+      callback(null, data);
+    }
+  });
+};
 
 module.exports = {
   connection,
   getRestaurantRating,
-  getAllReviews,
-  // getAllUsers,
+  getResponses,
+  getAllUsers,
 };
