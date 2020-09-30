@@ -34,7 +34,7 @@
     "enzyme-adapter-react-16": "1.15.5",
     "eslint": "^7.9.0",
     "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.1",
@@ -46,5 +46,14 @@
     "supertest": "^5.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
-  }
+  },
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TKOut-HRSF130/reviews-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TKOut-HRSF130/reviews-service/issues"
+  },
+  "homepage": "https://github.com/TKOut-HRSF130/reviews-service#readme"
 }

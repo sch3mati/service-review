@@ -23,9 +23,12 @@ app.get('/api/restaurants/:id', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`listening on port ${PORT}`);
 });
 
-module.exports = app;
+module.exports = {
+  server,
+  app,
+};
