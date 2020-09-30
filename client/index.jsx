@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import RestaurantInfo from './components/RestaurantInfo';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,51 +10,62 @@ class App extends React.Component {
     this.state = {
       // restaurant_id: 1,
       restaurant: {},
-      // reviews: [],
+      reviewsList: [],
+      users: [],
     };
   }
 
   componentDidMount() {
     this.getRestaurantInfo();
+    this.getReviewsList();
+    this.getUsers();
   }
 
   getRestaurantInfo(x = 1) {
     axios.get(`/api/restaurants/${x}`)
       .then((res) => {
-        // console.log(res.data);
         this.setState({
           restaurant: res.data[0],
         });
-        console.log(this.state.restaurant);
       })
       .catch((err) => {
         console.log('error with axios get request to restaurants table ', err);
       });
+  }
 
-    // axios.get(`/api/reviews/:${x}`)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     this.setState({
-    //       reviews: res.data,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log('error with axios get request to reviews table ', err);
-    //   });
+  getReviewsList(x = 1) {
+    axios.get(`/api/responses/${x}`)
+      .then((res) => {
+        this.setState({
+          reviewsList: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log('error with axios get request to reviews table ', err);
+      });
+  }
+
+  getUsers() {
+    axios.get('/api/users')
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          users: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log('error with axios get request to users table ', err);
+      });
   }
 
   render() {
     return (
       <div>
-        {/* {this.state.restaurant} */}
+        <RestaurantInfo />
+        <ReviewsContainer />
       </div>
     );
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-// ReactDOM.render(
-//   <h1>Hello, world! from React App Component</h1>,
-//   document.getElementById('app'),
-// );

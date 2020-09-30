@@ -34,7 +34,7 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE reviews (
+CREATE TABLE responses (
   id int NOT NULL AUTO_INCREMENT,
   id_restaurants int,
   id_users int,
