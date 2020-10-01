@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
+/* eslint-disable max-len */
 import React from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
@@ -19,9 +24,20 @@ const Right = styled.div`
 
 `;
 
+const UserInfoGraphic = styled.div`
+
+`;
+
+const Names = styled.div`
+
+`;
+
 const Photo = styled.div`
-  // border-radius: 10%;
   overflow: hidden;
+  width: 120px;
+  height: 120px;
+  background: red;
+  border-radius: 60px;
 `;
 
 const Ratings = styled.div`
@@ -42,12 +58,16 @@ const ReviewEntry = (props) => (
       <Photo>
         <img src={props.review.avatar} alt="" width="125" height="125" />
       </Photo>
-      <h6>first name: {props.review.first_name}</h6>
-      <h6>last name: {props.review.last_name}</h6>
-      <h6>Number of Reviews {props.review.number_of_reviews}</h6>
+      <UserInfoGraphic>
+        <Names>
+          <h6>{props.review.first_name}</h6>
+          <h6>{props.review.last_name}</h6>
+        </Names>
+        <h6>Number of Reviews {props.review.number_of_reviews}</h6>
+      </UserInfoGraphic>
     </Left>
     <Right>
-    <StarsBar fill={props.review.rating_overall} />
+      <StarsBar fill={props.review.rating_overall} />
       <h6>Dined on {props.review.create_date}</h6>
       <Ratings>
         <h6>Overall {props.review.rating_overall}</h6>

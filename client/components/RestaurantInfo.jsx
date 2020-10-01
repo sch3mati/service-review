@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
+/* eslint-disable max-len */
 import React from 'react';
 import styled from 'styled-components';
 
