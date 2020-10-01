@@ -31,13 +31,18 @@ CREATE TABLE users (
   first_name varchar(20),
   last_name varchar(20),
   number_of_reviews smallint,
+  locale varchar(50),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE responses (
+CREATE TABLE review_list (
   id int NOT NULL AUTO_INCREMENT,
   id_restaurants int,
-  id_users int,
+  avatar varchar(100),
+  first_name varchar(20),
+  last_name varchar(20),
+  number_of_reviews smallint,
+  locale varchar(50),
   create_date date,
   review_message varchar(1000),
   rating_overall tinyint,
@@ -51,7 +56,5 @@ CREATE TABLE responses (
   filters varchar(150),
   PRIMARY KEY (id),
   FOREIGN KEY (id_restaurants)
-    REFERENCES restaurants(id),
-  FOREIGN KEY (id_users)
-    REFERENCES users(id)
+    REFERENCES restaurants(id)
 );
