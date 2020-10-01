@@ -17,8 +17,8 @@ const getRestaurantRating = (id, callback) => {
   });
 };
 
-const getResponses = (id, callback) => {
-  const q = `SELECT * FROM responses where id_restaurants = ${id};`;
+const getReviewList = (id, callback) => {
+  const q = `SELECT * FROM review_list where id_restaurants = ${id};`;
   connection.query(q, (err, data) => {
     if (err) {
       // console.log('error in MySQL select * from transactions query');
@@ -46,6 +46,6 @@ const getAllUsers = (callback) => {
 module.exports = {
   connection,
   getRestaurantRating,
-  getResponses,
+  getReviewList,
   getAllUsers,
 };

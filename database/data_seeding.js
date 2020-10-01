@@ -34,16 +34,17 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 // query for inserting data to MySQL database users table
-const q2 = 'INSERT INTO users (avatar, first_name, last_name, number_of_reviews) VALUES (?, ?, ?, ?)';
+const q2 = 'INSERT INTO users (avatar, first_name, last_name, number_of_reviews, locale) VALUES (?, ?, ?, ?, ?)';
 
 for (let i = 0; i < 100; i += 1) {
   // random data generation functions
-  const selectAvatar = `${i}`;
+  const selectAvatar = `https://mataeux.s3-us-west-1.amazonaws.com/avatars/${i}.jpg`;
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
   const randomNumReviews = Math.floor(Math.random() * 500);
+  const randomLocation = faker.address.city();
 
-  db.connection.query(q2, [selectAvatar, firstName, lastName, randomNumReviews], (err) => {
+  db.connection.query(q2, [selectAvatar, firstName, lastName, randomNumReviews, randomLocation], (err) => {
     if (err) {
       throw err;
     }
@@ -51,12 +52,18 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 // query for inserting data to MySQL database reviews table
-const q3 = 'INSERT INTO responses (id_restaurants, id_users, create_date, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+const q3 = 'INSERT INTO review_list (id_restaurants, avatar, first_name, last_name, number_of_reviews, locale, create_date, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 for (let i = 0; i < 2000; i += 1) {
   // random data generation functions
   const restId = Math.ceil(Math.random() * 100);
-  const userId = Math.ceil(Math.random() * 100);
+  // const userId = Math.ceil(Math.random() * 100);
+  const randomNumber = Math.floor(Math.random() * 100);
+  const selectAvatar = `https://mataeux.s3-us-west-1.amazonaws.com/avatars/${randomNumber}.jpg`;
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
+  const randomNumReviews = Math.floor(Math.random() * 500);
+  const randomLocation = faker.address.city();
   const randomDate = faker.date.recent();
   const randomMessage = faker.lorem.paragraph();
   const overall = (Math.random() * 5).toFixed(2);
@@ -69,7 +76,7 @@ for (let i = 0; i < 2000; i += 1) {
   const love = faker.random.arrayElement(['Great for couples', 'Great night scene', 'Great for singles', 'Great for families', 'Great for brunch', 'Great for catching up']);
   const filters = faker.random.arrayElement(['breakfast', 'brunch', 'lunch', 'dinner', 'drinks', 'live music']);
 
-  db.connection.query(q3, [restId, userId, randomDate, randomMessage, overall,
+  db.connection.query(q3, [restId, selectAvatar, firstName, lastName, randomNumReviews, randomLocation, randomDate, randomMessage, overall,
     recent, food, service, ambience, noise, recommend, love, filters], (err) => {
     if (err) {
       throw err;

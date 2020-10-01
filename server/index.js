@@ -23,8 +23,8 @@ app.get('/api/restaurants/:id', (req, res1) => {
   });
 });
 
-app.get('/api/responses/:id', (req, res2) => {
-  db.getResponses(req.params.id, (err, data) => {
+app.get('/api/review_list/:id', (req, res2) => {
+  db.getReviewList(req.params.id, (err, data) => {
     if (err) {
       // console.log('error in server get request');
       res2.status(400).send(err);
