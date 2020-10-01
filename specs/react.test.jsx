@@ -1,21 +1,20 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import App from '../client/index';
 
-function Fixture() {
-  return (
-    <div>
-      <input id="checked" defaultChecked />
-      <input id="not" defaultChecked={false} />
-      <input id="tertiary" defaultChecked checked={false} />
-    </div>
-  );
-}
+// function Fixture() {
+//   return (
+//     <div>
+//       <input id="checked" defaultChecked />
+//       <input id="not" defaultChecked={false} />
+//       <input id="tertiary" defaultChecked checked={false} />
+//     </div>
+//   );
+// }
 
-describe('<Fixture />', () => {
-  it('assert checked', () => {
-    const wrapper = mount(<Fixture />); // mount/render/shallow when applicable
-    expect(wrapper.find('#checked')).toBeChecked();
-    // expect(wrapper.find('#not')).not.toBeChecked();
+describe('Enzyme test for App component', () => {
+  it('render all linked components', () => {
+    expect(shallow(<App />).toExist()).toBe(true);
   });
 });
