@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import App from '../client/index';
 
@@ -15,6 +16,6 @@ import App from '../client/index';
 
 describe('Enzyme test for App component', () => {
   it('render all linked components', () => {
-    expect(shallow(<App />).toExist()).toBe(true);
+    expect(shallow(<Index />).toExist()).toBe(true);
   });
 });

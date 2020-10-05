@@ -10,23 +10,42 @@ import styled from 'styled-components';
 import RestaurantInfo from './components/RestaurantInfo';
 import ReviewEntry from './components/ReviewEntry';
 
-class App extends React.Component {
+const Main = styled.div`
+  overflow: hidden;
+  padding: 0 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 630px;
+  display: block;
+  font-family: Helvetica,Arial,sans-serif;
+  line-height: 1.15;
+  cursor: default !important;
+  -webkit-box-direction: reverse;
+  -webkit-font-smoothing: antialiased;
+`;
+
+const Wrapper1 = styled.div`
+  margin: 0;
+  padding: 0 0 4rem;
+  max-width: inherit;
+  width: inherit;
+  transition: top 100ms ease-out;
+`;
+
+class ReviewModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       restaurant: {},
       reviewsList: [],
-      users: [],
     };
     this.getRestaurantInfo = this.getRestaurantInfo.bind(this);
     this.getReviewsList = this.getReviewsList.bind(this);
-    this.getUsers = this.getUsers.bind(this);
   }
 
   componentDidMount() {
     this.getRestaurantInfo();
     this.getReviewsList();
-    this.getUsers();
   }
 
   getRestaurantInfo(x = 1) {
@@ -57,20 +76,6 @@ class App extends React.Component {
       });
   }
 
-  getUsers() {
-    axios.get('/api/users')
-      .then((res) => {
-        this.setState({
-          users: res.data,
-        });
-        // console.log('res data user', res.data);
-        // console.log('users', this.state.users);
-      })
-      .catch((err) => {
-        console.log('error with axios get request to users table ', err);
-      });
-  }
-
   render() {
     const { restaurant } = this.state;
     const { reviewsList } = this.state;
@@ -79,13 +84,17 @@ class App extends React.Component {
     return (
 
       <div>
-        <RestaurantInfo restaurant={restaurant} length={reviewLength} />
-        {reviewsList.map((review, index) => (
-          <ReviewEntry review={review} key={index} />
-        ))}
+        <Main>
+          <Wrapper1>
+            {/* <RestaurantInfo restaurant={restaurant} length={reviewLength} /> */}
+            {reviewsList.map((review, index) => (
+              <ReviewEntry review={review} key={index} />
+            ))}
+          </Wrapper1>
+        </Main>
       </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<ReviewModule />, document.getElementById('ReviewModule'));

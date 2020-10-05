@@ -10,6 +10,10 @@ const BigWrapper = styled.div`
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: solid 1px #d8d9db;
+  display: block;
+  font-family: Helvetica, sans-serif;
+  background-color: #fff;
+  width: 640px;
 `;
 
 const Header = styled.h1`
@@ -26,14 +30,6 @@ const SmallWrapper = styled.div`
   width: 100%;
   padding-bottom: 2rem;
 `;
-
-// const LeftWrapper = styled.div`
-
-// `;
-
-// const RightWrapper = styled.div`
-
-// `;
 
 const Header2 = styled.h2`
   font-size: 1rem;
@@ -95,7 +91,7 @@ const RatingRow = styled.div`
 const RestaurantInfo = (props) => (
   <div>
     <BigWrapper>
-      <Header>What {props.length} people are saying</Header>
+      {props.length === 1 ? <Header>What {props.length} people are saying</Header> : <Header>What {props.length} people are saying</Header>}
       <SmallWrapper>
         <Header2>Overall ratings and reviews</Header2>
         <Header3>Reviews can only be made by diners who have eaten at this restaurant</Header3>
@@ -106,38 +102,37 @@ const RestaurantInfo = (props) => (
         </StarRating>
 
         <MidSection>
-            <Left>
-              <RatingCol>
-                <RatingRow>
-                  <h2>{props.restaurant.rating_food}</h2>
-                  <h5>Food</h5>
-                </RatingRow>
-                <RatingRow>
-                  <h2>{props.restaurant.rating_service}</h2>
-                  <h5>Service</h5>
-                </RatingRow>
-                <RatingRow>
-                  <h2>{props.restaurant.rating_ambience}</h2>
-                  <h5>Ambience</h5>
-                </RatingRow>
-                <RatingRow>
-                  <h2>{props.restaurant.rating_overall}</h2>
-                  <h5>Value</h5>
-                </RatingRow>
-              </RatingCol>
+          <Left>
+            <RatingCol>
+              <RatingRow>
+                <h2>{props.restaurant.rating_food}</h2>
+                <h5>Food</h5>
+              </RatingRow>
+              <RatingRow>
+                <h2>{props.restaurant.rating_service}</h2>
+                <h5>Service</h5>
+              </RatingRow>
+              <RatingRow>
+                <h2>{props.restaurant.rating_ambience}</h2>
+                <h5>Ambience</h5>
+              </RatingRow>
+              <RatingRow>
+                <h2>{props.restaurant.rating_overall}</h2>
+                <h5>Value</h5>
+              </RatingRow>
+            </RatingCol>
 
-              <img></img>
-              <h6><b>Noise </b>{props.restaurant.noise_level}</h6>
+            <img></img>
+            <h6><b>Noise </b>{props.restaurant.noise_level}</h6>
 
-              <img></img>
-              <h6>{props.restaurant.would_recommend * 100}% of people would recommend it to a friend</h6>
+            <img></img>
+            <h6>{props.restaurant.would_recommend * 100}% of people would recommend it to a friend</h6>
           </Left>
 
           <Right>
             <div className="barChart">{'--->BAR CHART<---'}</div>
           </Right>
         </MidSection>
-
         <div className="loved">
           <h2>Loved for</h2>
           <img></img>
