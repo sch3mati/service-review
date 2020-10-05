@@ -51,8 +51,12 @@ for (let i = 0; i < 100; i += 1) {
   });
 }
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
+
 // query for inserting data to MySQL database reviews table
-const q3 = 'INSERT INTO review_list (id_restaurants, avatar, first_name, last_name, number_of_reviews, locale, create_date, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+const q3 = 'INSERT INTO review_list (id_restaurants, avatar, first_name, last_name, number_of_reviews, locale, create_date_month, create_date_day, create_date_year, review_message, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 for (let i = 0; i < 2000; i += 1) {
   // random data generation functions
@@ -64,7 +68,9 @@ for (let i = 0; i < 2000; i += 1) {
   const lastName = faker.name.lastName();
   const randomNumReviews = Math.floor(Math.random() * 500);
   const randomLocation = faker.address.city();
-  const randomDate = faker.date.recent();
+  const randomDateMonth = months[Math.floor(Math.random() * 12)];
+  const randomDateDay = `${Math.ceil(Math.random() * 28)}`;
+  const randomDateYear = years[Math.floor(Math.random() * 11)];
   const randomMessage = faker.lorem.paragraph();
   const overall = (Math.random() * 5).toFixed(2);
   const recent = (Math.random() * 5).toFixed(2);
@@ -76,8 +82,7 @@ for (let i = 0; i < 2000; i += 1) {
   const love = faker.random.arrayElement(['Great for couples', 'Great night scene', 'Great for singles', 'Great for families', 'Great for brunch', 'Great for catching up']);
   const filters = faker.random.arrayElement(['breakfast', 'brunch', 'lunch', 'dinner', 'drinks', 'live music']);
 
-  db.connection.query(q3, [restId, selectAvatar, firstName, lastName, randomNumReviews, randomLocation, randomDate, randomMessage, overall,
-    recent, food, service, ambience, noise, recommend, love, filters], (err) => {
+  db.connection.query(q3, [restId, selectAvatar, firstName, lastName, randomNumReviews, randomLocation, randomDateMonth, randomDateDay, randomDateYear, randomMessage, overall, recent, food, service, ambience, noise, recommend, love, filters], (err) => {
     if (err) {
       throw err;
     }
