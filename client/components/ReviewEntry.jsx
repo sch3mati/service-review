@@ -8,6 +8,7 @@ import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import UserInfo from './UserInfo';
 import ReviewInfo from './ReviewInfo';
+import Stars from './Stars';
 
 const Wrapper = styled.div`
   padding-top: 1rem;
@@ -105,14 +106,6 @@ const Row1 = styled.div`
   align-items: center;
   font-size: 0.875rem;
   font-weight: 500;
-`;
-
-const StarsBar = styled.div`
-  display: flex;
-  height: 16px;
-  width: 16px;
-  border: 1px solid #d8d9db;
-  background-color: red;
 `;
 
 const Row1DotDate = styled.div`
@@ -225,6 +218,7 @@ const Report = styled.div`
 `;
 
 const ReviewEntry = (props) => (
+
   <Wrapper>
     <Left>
       <AvatarBox>
@@ -242,8 +236,7 @@ const ReviewEntry = (props) => (
     </Left>
     <Right>
       <Row1>
-        <StarsBar full={Math.floor(props.review.rating_overall)} partial={Math.ceil(props.review.rating_overall) - Math.floor(props.review.rating_overall)} empty={5 - Math.ceil(props.review.rating_overall)}>
-        </StarsBar>
+        <Stars full={props.full} partial={props.partial} empty={props.empty} />
         <Row1DotDate>
           <Row1Dot>·</Row1Dot>
           <Dined>Dined on {props.review.create_date_month} {props.review.create_date_day}, {props.review.create_date_year}</Dined>
@@ -286,6 +279,7 @@ const ReviewEntry = (props) => (
       </Row4>
     </Right>
   </Wrapper>
+
 );
 
 export default ReviewEntry;

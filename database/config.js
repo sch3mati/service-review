@@ -1,4 +1,6 @@
 module.exports = {
+  host: '172.19.0.2',
+  port: '3306',
   user: 'root',
   // if you are using the pairing stations, the user is `student`
   password: 'mysql',

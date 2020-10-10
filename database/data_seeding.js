@@ -72,11 +72,11 @@ for (let i = 0; i < 2000; i += 1) {
   const randomDateDay = `${Math.ceil(Math.random() * 28)}`;
   const randomDateYear = years[Math.floor(Math.random() * 11)];
   const randomMessage = faker.lorem.paragraph();
-  const overall = (Math.random() * 5).toFixed(2);
-  const recent = (Math.random() * 5).toFixed(2);
-  const food = (Math.random() * 5).toFixed(2);
-  const service = (Math.random() * 5).toFixed(2);
-  const ambience = (Math.random() * 5).toFixed(2);
+  const overall = (Math.random() * (5 - 1) + 1);
+  const recent = (Math.random() * (5 - 1) + 1);
+  const food = (Math.random() * (5 - 1) + 1);
+  const service = (Math.random() * (5 - 1) + 1);
+  const ambience = (Math.random() * (5 - 1) + 1);
   const noise = faker.random.arrayElement(['do not recall', 'quiet', 'moderate', 'energetic']);
   const recommend = Math.floor(Math.random());
   const love = faker.random.arrayElement(['Great for couples', 'Great night scene', 'Great for singles', 'Great for families', 'Great for brunch', 'Great for catching up']);
