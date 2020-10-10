@@ -9,7 +9,8 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "start-dev": "nodemon server/index.js -w server -w database",
+    "start": "nodemon server/index.js",
+    "start-once": "node server/index.js",
     "seed": "node database/data_seeding.js",
     "test": "jest",
     "test:coverage": "jest --verbose --coverage"
@@ -23,6 +24,7 @@
     "faker": "^5.1.0",
     "moment": "^2.29.0",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
     "path": "0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -45,7 +47,6 @@
     "jest": "^26.4.2",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
-    "nodemon": "^2.0.4",
     "supertest": "^5.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"

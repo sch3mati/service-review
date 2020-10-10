@@ -1,6 +1,8 @@
 const faker = require('faker');
+const mysql = require('mysql');
 // const moment = require('moment');
-const db = require('./index.js');
+const mysqlConfig = require('./config.js');
+const connection = mysql.createConnection(mysqlConfig);
 
 // query for inserting data to MySQL database restaurants table
 const q1 = 'INSERT INTO restaurants (name_of_restaurant,number_of_reviews, rating_overall, rating_recent, rating_food, rating_service, rating_ambience, noise_level, would_recommend, percent_five_star, percent_four_star, percent_three_star, percent_two_star, percent_one_star, loved_for, filters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -24,7 +26,7 @@ for (let i = 0; i < 100; i += 1) {
   const love = faker.random.arrayElement(['Great for couples', 'Great night scene', 'Great for singles', 'Great for families', 'Great for brunch', 'Great for catching up']);
   const filters = faker.random.arrayElement(['breakfast', 'brunch', 'lunch', 'dinner', 'drinks', 'live music']);
 
-  db.connection.query(q1, [restName, reviewsNum, overall,
+  connection.query(q1, [restName, reviewsNum, overall,
     recent, food, service, ambience, noise, recommend,
     five, four, three, two, one, love, filters], (err) => {
     if (err) {
@@ -44,7 +46,7 @@ for (let i = 0; i < 100; i += 1) {
   const randomNumReviews = Math.floor(Math.random() * 500);
   const randomLocation = faker.address.city();
 
-  db.connection.query(q2, [selectAvatar, firstName, lastName, randomNumReviews, randomLocation], (err) => {
+  connection.query(q2, [selectAvatar, firstName, lastName, randomNumReviews, randomLocation], (err) => {
     if (err) {
       throw err;
     }
@@ -72,17 +74,17 @@ for (let i = 0; i < 2000; i += 1) {
   const randomDateDay = `${Math.ceil(Math.random() * 28)}`;
   const randomDateYear = years[Math.floor(Math.random() * 11)];
   const randomMessage = faker.lorem.paragraph();
-  const overall = (Math.random() * 5).toFixed(2);
-  const recent = (Math.random() * 5).toFixed(2);
-  const food = (Math.random() * 5).toFixed(2);
-  const service = (Math.random() * 5).toFixed(2);
-  const ambience = (Math.random() * 5).toFixed(2);
+  const overall = (Math.random() * (5 - 1) + 1);
+  const recent = (Math.random() * (5 - 1) + 1);
+  const food = (Math.random() * (5 - 1) + 1);
+  const service = (Math.random() * (5 - 1) + 1);
+  const ambience = (Math.random() * (5 - 1) + 1);
   const noise = faker.random.arrayElement(['do not recall', 'quiet', 'moderate', 'energetic']);
   const recommend = Math.floor(Math.random());
   const love = faker.random.arrayElement(['Great for couples', 'Great night scene', 'Great for singles', 'Great for families', 'Great for brunch', 'Great for catching up']);
   const filters = faker.random.arrayElement(['breakfast', 'brunch', 'lunch', 'dinner', 'drinks', 'live music']);
 
-  db.connection.query(q3, [restId, selectAvatar, firstName, lastName, randomNumReviews, randomLocation, randomDateMonth, randomDateDay, randomDateYear, randomMessage, overall, recent, food, service, ambience, noise, recommend, love, filters], (err) => {
+  connection.query(q3, [restId, selectAvatar, firstName, lastName, randomNumReviews, randomLocation, randomDateMonth, randomDateDay, randomDateYear, randomMessage, overall, recent, food, service, ambience, noise, recommend, love, filters], (err) => {
     if (err) {
       throw err;
     }
