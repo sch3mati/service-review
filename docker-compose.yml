@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - 3002:3002
+      - '80:3002'
     depends_on:
       - 'mysql'
     restart: on-failure
@@ -13,7 +13,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: mysql
       MYSQL_DB: reviews
-    command: sh -c 'node ./server/index.js'
+    command: sh -c 'npm start'
 
   mysql:
     build: ./database

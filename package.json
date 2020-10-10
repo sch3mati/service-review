@@ -9,8 +9,8 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "start-dev": "nodemon server/index.js -w server -w database",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
+    "start-once": "node server/index.js",
     "seed": "node database/data_seeding.js",
     "test": "jest",
     "test:coverage": "jest --verbose --coverage"
