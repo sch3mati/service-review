@@ -17,81 +17,88 @@
 ## Usage
 
 Description: grab all rating data for a specified restaurant
-Endpoint: /api/reviews/restaurants/{id}
+Endpoint: /api/restaurant/:restaurantsId/reviews
 Method: GET
-Parameters: unique identifier
+
+GET /api/restaurant/:restaurantsId/reviews
+
+Path parameters: unique restaurant identifier
+Success Status Code: 200
 Return: a JSON object
-Example response:
+
+
+  {
+	id: Number,
+	name: String,
+	number_of_reviews:Number,
+	rating_food:		Number,
+	rating_service:		Number,
+  rating_ambience:	Number,
+	rating_overall:		Number,
+	rating_recent:		Number,
+	noise_level:		String,
+	would_recommend: 	Number,
+	percent_five_star:	Number,
+	percent_four_star:	Number,
+	percent_three_star:	Number,
+	percent_two_star:	Number,
+	percent_one_star:	Number,
+	loved_for:		[String, String, ...]
+}
+
+In case if we want set a new reviews:
+
+Endpoint: /api/restaurant/:restaurantsId/review
+Method: POST
+POST /api/restaurant/:restaurantsId/review
+Path parameters: unique restaurant identifier
+Success Status Code: 201
+
+Request body:
 {
-	id: 			001,
-	name: 			‘Maggiano’,
-	number_of_reviews:	84,
-	rating_food:		3.8,
-	rating_service:		2.7,
-rating_ambience:	3.2,
-	rating_overall:		3.4,
-	rating_recent:		2.5,
-	noise_level:		‘moderate’,
-	would_recommend: 	0.34,
-	percent_five_star:	0.05,
-	percent_four_star:	0.15,
-	percent_three_star:	0.60,
-	percent_two_star:	0.10,
-	percent_one_star:	0.10,
-	loved_for:		[‘Most Booked’, ‘Great for Dinner’],
-	filters:			[‘Bar Seating’, ‘Good for Singles’]
+	user_id:		Number,
+	create_date:		Date,
+	description: 	String,
+	rating_overall:		Number,
+	rating_food:		Number,
+	rating_service:		Number,
+	rating_ambience:	Number,
+	noise_level:		String,
+	would_recommend: 	Boolean,
+	loved_for:		[String, String, ...],
 }
 
 
-Description: grab all reviews data for a specified restaurant
-Endpoint: /api/reviews/reviews/{restaurant_id}
-Method: GET
-Parameters: unique identifier
-Return: an array of JSON objects
-Example of one element in response array:
+Change a review:
+Endpoint:  /api/reviews/:reviews
+Status code: 200
+Method: PATCH
+Path parameter: unique review identifier
+
+PATCH /api/reviews/:reviews
+
+
+Request body:
 {
-	id: 			0034,
-	restaurant_id:		001,
-	user_id:		007,
-	avatar:			‘http://some_S3_url_path’,
-	user_first_name: 	‘Sarah’,
-	user_last_name: 	‘Connor’,
-	location:		‘San Francisco, CA’,
-	create_date:		2020-07-23,
-description: 	‘I loved this place. Except for the robots in the kitchen. Just something wasn’t right about them.’,
-rating_overall:		3.4,
-	rating_food:		3.8,
-	rating_service:		2.7,
-rating_ambience:	3.2,
+	description: 	String,
+	rating_overall:		Number,
+	rating_food:		Number,
+	rating_service:		Number,
+	rating_ambience:	Number,
 	noise_level:		‘moderate’,
-	would_recommend: 	false,
-	loved_for:		[‘Most Booked’, ‘Great for Dinner’],
-	filters:			[‘Bar Seating’, ‘Good for Singles’]
+	would_recommend: 	Boolean,
+	loved_for:		[String, String, ...],
 }
 
 
-Description: grab all reviews data for a specified user
-Endpoint: /api/reviews/review_list/{user_id}
-Method: GET
-Parameters: unique identifier
-Return: an array of JSON objects
-Example of one element in response array:
-{
-	id: 			0034,
-	id_restaurant:		001,
-	user_id:		007,
+Delete review:
+Endpoint: /api/reviews/:reviews
 
-	create_date:		2020-07-23,
-description: 	‘I loved this place. Except for the robots in the kitchen. Just something wasn’t right about them.’,
-rating_overall:		3.4,
-	rating_food:		3.8,
-	rating_service:		2.7,
-rating_ambience:	3.2,
-	noise_level:		‘moderate’,
-	would_recommend: 	false,
-	loved_for:		[‘Most Booked’, ‘Great for Dinner’],
-	filters:			[‘Bar Seating’, ‘Good for Singles’]
-}
+DELETE /api/reviews/:reviews
+
+Status code: 204
+
+
 
 
 ## Requirements
