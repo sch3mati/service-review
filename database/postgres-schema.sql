@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS reviewssdc;
+DROP DATABASE IF EXISTS reviews;
 
-CREATE DATABASE reviewssdc;
+CREATE DATABASE reviews;
 
-\c reviewssdc;
+\c reviews;
 
-USE reviewssdc;
+USE reviews;
 
 CREATE TABLE IF NOT EXISTS restaurants (
   id serial primary key,
@@ -37,16 +37,12 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS review_list (
   id serial primary key,
-  id_restaurants int,
-  avatar varchar(100),
-  first_name varchar(20),
-  last_name varchar(20),
-  number_of_reviews int,
-  locale varchar(50),
-  create_date_month varchar(50),
-  create_date_day varchar(50),
-  create_date_year varchar(50),
-  review_message varchar(1000),
+  id_restaurants int references restaurants(id) NOT NULL,
+  id_user int references users(id) NOT NULL,
+  create_date_month varchar(10),
+  create_date_day varchar(3),
+  create_date_year varchar(6),
+  review_message varchar,
   rating_overall int,
   rating_recent int,
   rating_food int,

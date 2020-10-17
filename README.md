@@ -17,11 +17,15 @@
 ## Usage
 
 Description: grab all rating data for a specified restaurant
-Endpoint: /api/reviews/:restaurantsId/{id}
+Endpoint: /api/restaurant/:restaurantsId/reviews
 Method: GET
-GET /api/reviews/:restaurantsId/{id}
-Parameters: unique identifier
+
+GET /api/restaurant/:restaurantsId/reviews
+
+Path parameters: unique restaurant identifier
+Success Status Code: 200
 Return: a JSON object
+
 
   {
 	id: Number,
@@ -44,14 +48,14 @@ Return: a JSON object
 
 In case if we want set a new reviews:
 
-Endpoint: /api/reviews/reviews/post?reviewId=
+Endpoint: /api/restaurant/:restaurantsId/review
 Method: POST
-POST /api/reviews/reviews/post?reviewId=
-Success Status Code: 200
+POST /api/restaurant/:restaurantsId/review
+Path parameters: unique restaurant identifier
+Success Status Code: 201
 
+Request body:
 {
-	id: 			Number,
-	id_restaurant:		Number,
 	user_id:		Number,
 	create_date:		Date,
 	description: 	String,
@@ -66,14 +70,16 @@ Success Status Code: 200
 
 
 Change a review:
-Endpoint:  /api/reviews/:reviews?reviewId=
+Endpoint:  /api/reviews/:reviews
 Status code: 200
 Method: PATCH
+Path parameter: unique review identifier
 
-PATCH /api/reviews/:reviews?reviewId=
+PATCH /api/reviews/:reviews
 
+
+Request body:
 {
-	id: 			Number,
 	description: 	String,
 	rating_overall:		Number,
 	rating_food:		Number,
@@ -90,7 +96,7 @@ Endpoint: /api/reviews/:reviews
 
 DELETE /api/reviews/:reviews
 
-Status code: 200
+Status code: 204
 
 
 

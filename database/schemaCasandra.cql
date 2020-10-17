@@ -1,8 +1,8 @@
-DROP KEYSPACE IF EXISTS reviewsSDCc;
-CREATE KEYSPACE reviewsSDCc
+DROP KEYSPACE IF EXISTS reviews;
+CREATE KEYSPACE reviews
 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 
-USE reviewsSDCc;
+USE reviews;
 
 
 CREATE TABLE restaurants (
@@ -26,17 +26,17 @@ CREATE TABLE restaurants (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE users (
-  id uuid,
-  avatar varchar,
-  first_name varchar,
-  last_name varchar,
-  number_of_reviews int,
-  locale varchar,
-  PRIMARY KEY (id)
-);
+-- CREATE TABLE users (
+--   id uuid,
+--   avatar varchar,
+--   first_name varchar,
+--   last_name varchar,
+--   number_of_reviews int,
+--   locale varchar,
+--   PRIMARY KEY (locale, id)
+-- );
 
-CREATE TABLE review_list (
+CREATE TABLE reviews_by_restaurant (
   id uuid,
   id_restaurants int,
   avatar varchar,
@@ -57,5 +57,5 @@ CREATE TABLE review_list (
   would_recommend int,
   loved_for varchar,
   filters varchar,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id_restaurants, id)
 );
