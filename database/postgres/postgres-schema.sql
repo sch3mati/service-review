@@ -4,7 +4,6 @@ CREATE DATABASE reviews;
 
 \c reviews;
 
-USE reviews;
 
 CREATE TABLE IF NOT EXISTS restaurants (
   id serial primary key,
