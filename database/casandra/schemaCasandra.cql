@@ -6,7 +6,7 @@ USE reviews;
 
 
 CREATE TABLE restaurants (
-  id uuid,
+  id int,
   name_of_restaurant varchar,
   number_of_reviews int,
   rating_overall double,
@@ -37,7 +37,7 @@ CREATE TABLE restaurants (
 -- );
 
 CREATE TABLE reviews_by_restaurant (
-  id uuid,
+  id int,
   id_restaurants int,
   avatar varchar,
   first_name varchar,
@@ -59,3 +59,7 @@ CREATE TABLE reviews_by_restaurant (
   filters varchar,
   PRIMARY KEY (id_restaurants, id)
 );
+
+COPY restaurants (id, name_of_restaurant ,number_of_reviews ,rating_overall,rating_recent,rating_food ,rating_service, rating_ambience, noise_level ,would_recommend ,percent_five_star ,percent_four_star ,percent_three_star ,percent_two_star ,percent_one_star ,loved_for ,filters )  FROM '/Users/mikejuli/Documents/GitHub/SDC/reviews-service/database/casandra/restaurantsC.csv' WITH DELIMITER = ',' AND HEADER=TRUE;
+
+COPY reviews_by_restaurant (id ,id_restaurants ,avatar ,first_name ,last_name ,number_of_reviews ,locale ,create_date_month ,create_date_day ,create_date_year ,review_message ,rating_overall ,rating_recent ,rating_food ,rating_service ,rating_ambience , noise_level ,would_recommend ,loved_for ,filters)  FROM '/Users/mikejuli/Documents/GitHub/SDC/reviews-service/database/casandra/reviewsC.csv' WITH DELIMITER = ',' AND HEADER=TRUE;

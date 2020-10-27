@@ -6,12 +6,16 @@ let writer = csvWriter();
 
 lovedFor = ['family', 'evening', 'party', 'friends', 'meeting']
 
-    writer.pipe(fs.createWriteStream('reviews.csv'));
-    for (let i = 0; i < 1000000; i++) {
+    writer.pipe(fs.createWriteStream('reviewsC.csv'));
+    for (let i = 0; i < 5000000; i++) {
       writer.write({
         id: i + 1,
-    id_restaurants: Math.ceil(Math.random()*250000),
-    id_user: Math.ceil(Math.random()*250000),
+    id_restaurants: Math.ceil(Math.random()*1000),
+    avatar: '/',
+    first_name: faker.name.firstName(),
+    last_name: faker.name.lastName(),
+    number_of_reviews: Math.ceil(Math.random()*100)%12,
+    locale: 'adress',
     create_date_month: Math.ceil(Math.random()*100)%12,
     create_date_day: Math.ceil(Math.random()*100)%31,
     create_date_year: Math.ceil(Math.random()*100)%10+ 2010,
@@ -23,15 +27,12 @@ lovedFor = ['family', 'evening', 'party', 'friends', 'meeting']
     rating_ambience:  Math.ceil(Math.random()*100)%5,
     noise_level:  Math.ceil(Math.random()*100)%10,
     would_recommend:  Math.ceil(Math.random()*100)%5,
-    loved_for: lovedFor[Math.ceil(Math.random()*100)%4]
+    loved_for: lovedFor[Math.ceil(Math.random()*100)%4],
+    filters: 'some'
       });
       if(i<1000){console.log(i+1 + ' records have been generated');}
       if(i%1000===0){console.log(i+1 + ' records have been generated');}
     }
     writer.end();
     console.log('generated reviews csv');
-
-
-
-
 

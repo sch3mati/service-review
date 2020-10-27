@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const db = require('../database/index.js');
+const db = require('../database/postgres/connection.js');
 
 const app = express();
 const PORT = 3002;
@@ -12,7 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public/')));
 
 app.get('/api/restaurants/:id', (req, res1) => {
-  db.getRestaurantRating(req.params.id, (err, data) => {
+
+  db.getRestaurants(req.params.id, (err, data) => {
     if (err) {
       // console.log('error in server get request');
       res1.status(400).send(err);

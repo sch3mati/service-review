@@ -53,3 +53,15 @@ CREATE TABLE IF NOT EXISTS review_list (
   filters varchar(150)
 
 );
+
+DELETE from restaurants;
+DELETE from users;
+DELETE from review_list;
+
+
+\copy restaurants FROM '/Users/mikejuli/Documents/GitHub/SDC/reviews-service/database/postgres/restaurants.csv' CSV header;
+
+\copy users FROM '/Users/mikejuli/Documents/GitHub/SDC/reviews-service/database/postgres/users.csv' CSV header;
+
+\copy review_list FROM '/Users/mikejuli/Documents/GitHub/SDC/reviews-service/database/postgres/reviews.csv' CSV header;
+
